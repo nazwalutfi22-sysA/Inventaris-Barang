@@ -235,6 +235,7 @@ th, td {
   padding: 8px 15px;
 }
 
+HEAD
 .wrapper {
   width: 100%;
   padding: 40px 20px;
@@ -300,7 +301,6 @@ form select {
   background : #2c7ecf ;
   color :white;
 }
-
 
 @media (max-width: 900px) {
   .sidebar {
