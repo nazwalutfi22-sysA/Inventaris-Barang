@@ -17,6 +17,7 @@ app.config['UPLOAD_FOLDER']='static/uploads'
 mysql = MySQL(app)
 
 
+# ---------------- Admin  -----------------#
 @app.route('/')
 def index():
     return render_template('admin/dashboard_admin.html')
@@ -76,6 +77,20 @@ def tambah_data_petugas():
 @app.route('/tambah_kategori')
 def tambah_kategori():
     return render_template('admin/tambah_kategori.html')
+
+# ---------------- Petugas ------------------#
+
+@app.route('/login_petugas')
+def login_petugas():
+    return render_template('petugas/login_petugas.html')
+
+@app.route('/data_laporan_petugas')
+def data_laporan_petugas():
+    return render_template('petugas/data_laporan_petugas.html')
+
+@app.route('/tambah_transaksi')
+def tambah_transaksi():
+    return render_template('petugas/tambah_transaksi.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
