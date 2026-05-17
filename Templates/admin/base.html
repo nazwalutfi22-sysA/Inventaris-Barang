@@ -31,27 +31,27 @@
             </div>
             <!-- MENU -->
             <div class="menu">
-                <a href="/dashboard">
+                <a href="{{url_for('dashboard_admin')}}">
                     <i class="bi bi-grid"></i>
                     Dashboard
                 </a>
-                <a href="/data_barang">
+                <a href="{{url_for('data_barang')}}">
                     <i class="bi bi-box"></i>
                     Data Barang
                 </a>
-                <a href="/data_kategori">
+                <a href="{{url_for('data_kategori')}}">
                     <i class="bi bi-stars"></i>
                     Kategori
                 </a>
-                <a href="/data_laporan">
+                <a href="{{url_for('data_laporan')}}">
                     <i class="bi bi-table"></i>
                     Laporan
                 </a>
-                <a href="/data_lokasi">
+                <a href="{{url_for('data_lokasi')}}">
                     <i class="bi bi-geo-alt"></i>
                     Lokasi
                 </a>
-                <a href="/data_petugas">
+                <a href="{{url_for('data_petugas')}}">
                     <i class="bi bi-person-workspace"></i>
                     Petugas
                 </a>
@@ -63,17 +63,13 @@
             <div class="admin-icon">👤</div>
             <div>Admin</div>
         </div>
-
     </div>
-
     <!-- CONTENT -->
     <div class="content">
         {% block content %}
         <!-- isi halaman -->
         {% endblock %}
     </div>
-
 </div>
-
 </body>
 </html>

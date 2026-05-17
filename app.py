@@ -81,12 +81,12 @@ def tambah_barang():
     return render_template('admin/tambah_barang.html')
 
 @app.route('/tambah_data_lokasi')
-def tambah_data_lokasi():
-    return render_template('admin/tambah_data_lokasi.html')
+def tambah_lokasi():
+    return render_template('admin/tambah_lokasi.html')
 
 @app.route('/tambah_data_petugas')
-def tambah_data_petugas():
-    return render_template('admin/tambah_data_petugas.html')
+def tambah_petugas():
+    return render_template('admin/tambah_petugas.html')
 
 @app.route('/tambah_kategori')
 def tambah_kategori():
@@ -94,6 +94,9 @@ def tambah_kategori():
 
 # ---------------- Petugas  ------------------#
 
+@app.route('/dashboard_petugas')
+def dashboard_petugas():
+    return render_template('petugas/dashboard_petugas.html')
 
 @app.route('/data_laporan_petugas')
 def data_laporan_petugas():
@@ -102,10 +105,6 @@ def data_laporan_petugas():
 @app.route('/tambah_transaksi')
 def tambah_transaksi():
     return render_template('petugas/tambah_transaksi.html')
-
-@app.route('/dashboard_petugas')
-def dashboard_petugas():
-    return render_template('petugas/dashboard_petugas.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
