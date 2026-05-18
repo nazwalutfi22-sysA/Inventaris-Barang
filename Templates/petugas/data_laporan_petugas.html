@@ -1,232 +1,149 @@
 {% extends 'petugas/base_petugas.html' %}
+
 {% block title %}Data Laporan{% endblock %}
 
 {% block content %}
 
 <style>
-
 /* ================= TITLE ================= */
-
 .title-box{
-
     font-size: 28px;
-
     font-weight: 700;
-
     color: #1e293b;
-
     margin-bottom: 24px;
 }
 
 /* ================= TABLE WRAPPER ================= */
-
 .table-wrapper{
-
     background: #ffffff;
-
     border-radius: 22px;
-
     padding: 22px;
-
     border: 1px solid #edf2f7;
-
-    box-shadow:
-        0 10px 25px rgba(37,99,235,0.05);
-
+    box-shadow: 0 10px 25px rgba(37,99,235,0.05);
     overflow-x: auto;
 }
 
 /* ================= TABLE ================= */
-
 table{
-
     width: 100%;
-
     border-collapse: separate;
-
     border-spacing: 0 12px;
 }
 
 /* ================= TABLE HEADER ================= */
-
 thead th{
-
     background: #eef4ff;
-
     color: #475569;
-
     padding: 16px 18px;
-
     font-size: 14px;
-
     font-weight: 600;
-
     border: none;
-
     white-space: nowrap;
 }
-
 thead th:first-child{
-
     border-top-left-radius: 14px;
     border-bottom-left-radius: 14px;
 }
-
 thead th:last-child{
-
     border-top-right-radius: 14px;
     border-bottom-right-radius: 14px;
 }
 
 /* ================= TABLE BODY ================= */
-
 tbody tr{
-
     background: #ffffff;
-
     transition: .25s ease;
 }
-
 tbody tr:hover{
-
     transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 20px rgba(37,99,235,0.08);
+    box-shadow: 0 8px 20px rgba(37,99,235,0.08);
 }
-
 tbody td{
-
     padding: 18px;
-
     background: white;
-
     border-top: 1px solid #edf2f7;
     border-bottom: 1px solid #edf2f7;
-
     font-size: 14px;
-
     color: #334155;
-
     vertical-align: middle;
 }
-
 tbody td:first-child{
-
     border-left: 1px solid #edf2f7;
-
     border-top-left-radius: 14px;
     border-bottom-left-radius: 14px;
 }
-
 tbody td:last-child{
-
     border-right: 1px solid #edf2f7;
-
     border-top-right-radius: 14px;
     border-bottom-right-radius: 14px;
 }
 
 /* ================= AKSI ================= */
-
 .aksi{
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
-
     white-space: nowrap;
 }
 
 /* ================= BUTTON ================= */
-
 .btn-edit{
-
     border: none;
-
     padding: 8px 14px;
-
     border-radius: 10px;
-
     background: #fff4cf;
-
     color: #9b7000;
-
     font-size: 13px;
-
     font-weight: 600;
-
     transition: .3s;
+    text-decoration: none;
+    display: inline-block;
 }
-
 .btn-edit:hover{
-
     background: #ffe7a0;
+    color: #9b7000;
 }
-
 .btn-hapus{
-
     border: none;
-
     padding: 8px 14px;
-
     border-radius: 10px;
-
     background: #ffe4e4;
-
     color: #d63031;
-
     font-size: 13px;
-
     font-weight: 600;
-
     transition: .3s;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
 }
-
 .btn-hapus:hover{
-
     background: #ffcfcf;
+    color: #d63031;
 }
 
 /* ================= BADGE ================= */
-
-.badge{
-
+.badge-custom{
     padding: 7px 14px;
-
     border-radius: 999px;
-
     font-size: 12px;
-
     font-weight: 600;
+    display: inline-block;
 }
-
-.masuk{
-
+.badge-masuk{
     background: #dcfff1;
-
     color: #00a86b;
 }
-
-.keluar{
-
+.badge-keluar{
     background: #ffe5e5;
-
     color: #d63031;
 }
 
 /* ================= RESPONSIVE ================= */
-
 @media(max-width: 768px){
-
     table{
-
         min-width: 1100px;
     }
 }
-
 </style>
 
 <!-- TITLE -->
@@ -236,15 +153,14 @@ tbody td:last-child{
 
 <!-- TABLE -->
 <div class="table-wrapper">
-
     <table>
-
         <thead>
             <tr>
+                <th>No</th>
                 <th>Lokasi</th>
                 <th>Nama Barang</th>
                 <th>Kategori</th>
-                <th>Stok</th>
+                <th>Nomor Barang</th>
                 <th>Kondisi</th>
                 <th>Tanggal</th>
                 <th>Nama Petugas</th>
@@ -252,59 +168,40 @@ tbody td:last-child{
                 <th>Aksi</th>
             </tr>
         </thead>
-
         <tbody>
-
+            {% for l in laporan %}
             <tr>
-                <td>Ruang A</td>
-                <td>Laptop Asus</td>
-                <td>Elektronik</td>
-                <td>15</td>
-                <td>Baik</td>
-                <td>9/4/2026</td>
-                <td>Andi</td>
-
+                <td>{{ loop.index }}</td>
+                <td>{{ l.nama_lokasi }}</td>
+                <td>{{ l.nama_barang }}</td>
+                <td>{{ l.nama_kategori }}</td>
+                <td>{{ l.nomor_barang }}</td>
+                <td>{{ l.kondisi_barang }}</td>
+                <td>{{ l.tanggal.strftime('%d/%m/%Y') if l.tanggal else '-' }}</td>
+                <td>{{ l.nama_petugas }}</td>
                 <td>
-                    <span class="badge masuk">
-                        Masuk
-                    </span>
+                    {% if l.tipe == 'masuk' %}
+                    <span class="badge-custom badge-masuk">Masuk</span>
+                    {% else %}
+                    <span class="badge-custom badge-keluar">Keluar</span>
+                    {% endif %}
                 </td>
-
                 <td>
                     <div class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus">Hapus</button>
+                        <a href="{{ url_for('edit_transaksi', id=l.id_transaksi) }}" class="btn-edit">Edit</a>
+                        <a href="{{ url_for('hapus_transaksi', id=l.id_transaksi) }}" 
+                           class="btn-hapus" 
+                           onclick="return confirm('Yakin ingin menghapus transaksi ini?')">Hapus</a>
                     </div>
                 </td>
             </tr>
-
+            {% else %}
             <tr>
-                <td>Ruang B</td>
-                <td>Meja</td>
-                <td>Furniture</td>
-                <td>15</td>
-                <td>Baik</td>
-                <td>9/4/2026</td>
-                <td>Andi</td>
-
-                <td>
-                    <span class="badge keluar">
-                        Keluar
-                    </span>
-                </td>
-
-                <td>
-                    <div class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus">Hapus</button>
-                    </div>
-                </td>
+                <td colspan="10" class="text-center py-4 text-muted">Belum ada data laporan</td>
             </tr>
-
+            {% endfor %}
         </tbody>
-
     </table>
-
 </div>
 
 {% endblock %}

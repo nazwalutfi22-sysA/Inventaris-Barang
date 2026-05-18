@@ -5,9 +5,7 @@
 {% block content %}
 
 <style>
-
 /* ================= CONTENT FIX ================= */
-
 .content-laporan{
     margin-left: 265px;
     width: calc(100% - 265px);
@@ -15,525 +13,296 @@
 }
 
 /* ================= HEADER ================= */
-
 .header{
     margin-bottom: 28px;
 }
-
 .header h3{
     font-size: 30px;
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 6px;
 }
-
 .header p{
     color: #64748b;
     font-size: 14px;
 }
 
 /* ================= DASHBOARD CARDS ================= */
-
 .dashboard-cards{
-
     display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(220px, 1fr));
-
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
-
     margin-bottom: 28px;
 }
-
 .card-box{
-
     background: rgba(255,255,255,0.95);
-
     border-radius: 22px;
-
     padding: 24px;
-
     border: 1px solid #edf2f7;
-
-    box-shadow:
-        0 10px 25px rgba(37,99,235,0.06);
-
+    box-shadow: 0 10px 25px rgba(37,99,235,0.06);
     transition: .3s ease;
 }
-
 .card-box:hover{
-
     transform: translateY(-5px);
-
-    box-shadow:
-        0 14px 30px rgba(37,99,235,0.10);
+    box-shadow: 0 14px 30px rgba(37,99,235,0.10);
 }
 
 /* ================= CARD TOP ================= */
-
 .card-top{
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 }
-
 .card-icon{
-
     width: 55px;
     height: 55px;
-
     border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
 }
 
 /* ================= ICON COLOR ================= */
-
 .blue{
-    background:
-        linear-gradient(
-            135deg,
-            #60a5fa,
-            #3b82f6
-        );
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
 }
-
 .green{
-    background:
-        linear-gradient(
-            135deg,
-            #34d399,
-            #10b981
-        );
+    background: linear-gradient(135deg, #34d399, #10b981);
 }
-
 .red{
-    background:
-        linear-gradient(
-            135deg,
-            #f87171,
-            #ef4444
-        );
+    background: linear-gradient(135deg, #f87171, #ef4444);
 }
-
 .yellow{
-    background:
-        linear-gradient(
-            135deg,
-            #fbbf24,
-            #f59e0b
-        );
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
 }
 
 /* ================= CARD TEXT ================= */
-
 .card-box p{
-
     margin-top: 18px;
-
     margin-bottom: 6px;
-
     color: #64748b;
-
     font-size: 14px;
 }
-
 .card-box h2{
-
     font-size: 34px;
-
     font-weight: 700;
-
     color: #0f172a;
 }
 
 /* ================= TABLE BOX ================= */
-
 .table-box{
-
     background: rgba(255,255,255,0.96);
-
     border-radius: 24px;
-
     padding: 25px;
-
     border: 1px solid #edf2f7;
-
-    box-shadow:
-        0 10px 25px rgba(37,99,235,0.05);
+    box-shadow: 0 10px 25px rgba(37,99,235,0.05);
 }
-
 .table-box h5{
-
     font-size: 20px;
-
     font-weight: 700;
-
     margin-bottom: 22px;
-
     color: #0f172a;
 }
 
 /* ================= TABLE WRAPPER ================= */
-
 .table-wrapper{
     overflow-x: auto;
 }
 
 /* ================= CUSTOM TABLE ================= */
-
 .custom-table{
-
     width: 100%;
-
     border-collapse: separate;
-
     border-spacing: 0 12px;
 }
 
 /* ================= TABLE HEADER ================= */
-
 .custom-table thead th{
-
     background: #eef4ff;
-
     color: #475569;
-
     padding: 16px 18px;
-
     font-size: 14px;
-
     font-weight: 600;
-
     border: none;
-
     white-space: nowrap;
 }
-
 .custom-table thead th:first-child{
-
     border-top-left-radius: 14px;
     border-bottom-left-radius: 14px;
 }
-
 .custom-table thead th:last-child{
-
     border-top-right-radius: 14px;
     border-bottom-right-radius: 14px;
 }
 
 /* ================= TABLE BODY ================= */
-
 .custom-table tbody tr{
-
     background: #ffffff;
-
     transition: .25s ease;
 }
-
 .custom-table tbody tr:hover{
-
     transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 20px rgba(37,99,235,0.08);
+    box-shadow: 0 8px 20px rgba(37,99,235,0.08);
 }
-
 .custom-table tbody td{
-
     padding: 18px;
-
     background: white;
-
     border-top: 1px solid #edf2f7;
     border-bottom: 1px solid #edf2f7;
-
     font-size: 14px;
-
     color: #334155;
-
     vertical-align: middle;
 }
-
 .custom-table tbody td:first-child{
-
     border-left: 1px solid #edf2f7;
-
     border-top-left-radius: 14px;
     border-bottom-left-radius: 14px;
 }
-
 .custom-table tbody td:last-child{
-
     border-right: 1px solid #edf2f7;
-
     border-top-right-radius: 14px;
     border-bottom-right-radius: 14px;
 }
 
 /* ================= BADGE ================= */
-
-.badge{
-
+.badge-custom{
     padding: 7px 14px;
-
     border-radius: 999px;
-
     font-size: 12px;
-
     font-weight: 600;
+    display: inline-block;
 }
-
-.masuk{
-
+.badge-masuk{
     background: #dcfff1;
-
     color: #00a86b;
 }
-
-.keluar{
-
+.badge-keluar{
     background: #ffe5e5;
-
     color: #d63031;
 }
 
-/* ================= BUTTON GROUP FIX ================= */
-
-.action-buttons{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: nowrap;
-}
-
-.btn-edit,
-.btn-hapus{
-
-    border: none;
-
-    padding: 8px 14px;
-
-    border-radius: 10px;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    transition: .25s ease;
-}
-
-.btn-edit{
-
-    background: #fff4cc;
-
-    color: #b78103;
-}
-
-.btn-hapus{
-
-    background: #ffe5e5;
-
-    color: #dc2626;
-}
-
-.btn-edit:hover,
-.btn-hapus:hover{
-
-    transform: translateY(-2px);
-}
-
 /* ================= RESPONSIVE ================= */
-
 @media(max-width: 992px){
-
     .content-laporan{
         margin-left: 220px;
         width: calc(100% - 220px);
     }
 }
-
 @media(max-width: 768px){
-
     .content-laporan{
         margin-left: 0;
         width: 100%;
         padding: 20px;
     }
-
     .dashboard-cards{
         grid-template-columns: 1fr;
     }
-
     .table-box{
         padding: 18px;
     }
 }
-
 </style>
 
 <!-- HEADER -->
 <div class="header">
-
     <h3>Dashboard Petugas</h3>
-
-    <p>
-        Selamat datang di halaman petugas
-    </p>
-
+    <p>Selamat datang di halaman petugas, {{ session.get('username', 'Petugas') }}</p>
 </div>
 
 <!-- CARD -->
 <div class="dashboard-cards">
 
     <div class="card-box">
-
         <div class="card-top">
-
             <div>
-                <p>Total Barang</p>
-                <h2>120</h2>
+                <p>Total Barang di Lokasi</p>
+                <h2>{{ total_barang }}</h2>
             </div>
-
-            <div class="card-icon blue"></div>
-
+            <div class="card-icon blue">
+                <i class="bi bi-box-seam"></i>
+            </div>
         </div>
-
     </div>
 
     <div class="card-box">
-
         <div class="card-top">
-
             <div>
                 <p>Barang Masuk</p>
-                <h2>50</h2>
+                <h2>{{ barang_masuk }}</h2>
             </div>
-
-            <div class="card-icon green"></div>
-
+            <div class="card-icon green">
+                <i class="bi bi-arrow-down-circle"></i>
+            </div>
         </div>
-
     </div>
 
     <div class="card-box">
-
         <div class="card-top">
-
             <div>
                 <p>Barang Keluar</p>
-                <h2>30</h2>
+                <h2>{{ barang_keluar }}</h2>
             </div>
-
-            <div class="card-icon red"></div>
-
+            <div class="card-icon red">
+                <i class="bi bi-arrow-up-circle"></i>
+            </div>
         </div>
-
     </div>
 
     <div class="card-box">
-
         <div class="card-top">
-
             <div>
                 <p>Total Transaksi</p>
-                <h2>80</h2>
+                <h2>{{ total_transaksi }}</h2>
             </div>
-
-            <div class="card-icon yellow"></div>
-
+            <div class="card-icon yellow">
+                <i class="bi bi-clock-history"></i>
+            </div>
         </div>
-
     </div>
 
 </div>
 
 <!-- TABLE -->
 <div class="table-box">
-
     <h5>Data Transaksi Terbaru</h5>
-
     <div class="table-wrapper">
-
         <table class="table custom-table align-middle mb-0">
-
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Nama Barang</th>
                     <th>Kategori</th>
-                    <th>Jumlah</th>
+                    <th>Nomor Barang</th>
                     <th>Tanggal</th>
                     <th>Status</th>
                 </tr>
             </thead>
-
             <tbody>
-
+                {% for t in transaksi_terbaru %}
                 <tr>
-                    <td>1</td>
-                    <td>Laptop Asus</td>
-                    <td>Elektronik</td>
-                    <td>5</td>
-                    <td>17 Mei 2026</td>
-
+                    <td>{{ loop.index }}</td>
+                    <td>{{ t.nama_barang }}</td>
+                    <td>{{ t.nama_kategori }}</td>
+                    <td>{{ t.nomor_barang }}</td>
+                    <td>{{ t.tanggal.strftime('%d %B %Y') if t.tanggal else '-' }}</td>
                     <td>
-                        <span class="badge masuk">
-                            Masuk
-                        </span>
+                        {% if t.tipe == 'masuk' %}
+                        <span class="badge-custom badge-masuk">Masuk</span>
+                        {% else %}
+                        <span class="badge-custom badge-keluar">Keluar</span>
+                        {% endif %}
                     </td>
                 </tr>
-
+                {% else %}
                 <tr>
-                    <td>2</td>
-                    <td>Meja</td>
-                    <td>Furniture</td>
-                    <td>3</td>
-                    <td>17 Mei 2026</td>
-
-                    <td>
-                        <span class="badge keluar">
-                            Keluar
-                        </span>
-                    </td>
+                    <td colspan="6" class="text-center py-4 text-muted">Belum ada transaksi</td>
                 </tr>
-
-                <tr>
-                    <td>3</td>
-                    <td>Kursi</td>
-                    <td>Furniture</td>
-                    <td>10</td>
-                    <td>17 Mei 2026</td>
-
-                    <td>
-                        <span class="badge masuk">
-                            Masuk
-                        </span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>4</td>
-                    <td>Monitor LG</td>
-                    <td>Elektronik</td>
-                    <td>2</td>
-                    <td>17 Mei 2026</td>
-
-                    <td>
-                        <span class="badge keluar">
-                            Keluar
-                        </span>
-                    </td>
-                </tr>
-
+                {% endfor %}
             </tbody>
-
         </table>
-
     </div>
-
 </div>
 
 {% endblock %}

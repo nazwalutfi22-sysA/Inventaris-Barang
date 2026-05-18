@@ -1,0 +1,122 @@
+{% extends 'petugas/base_petugas.html' %}
+
+{% block title %}Data Lokasi{% endblock %}
+
+{% block content %}
+
+<style>
+/* ================= TITLE ================= */
+.title-box{
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 24px;
+}
+
+/* ================= TABLE WRAPPER ================= */
+.table-wrapper{
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 22px;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 10px 25px rgba(37,99,235,0.05);
+    overflow-x: auto;
+}
+
+/* ================= TABLE ================= */
+table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+/* ================= TABLE HEADER ================= */
+thead th{
+    background: #eef4ff;
+    color: #475569;
+    padding: 16px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    white-space: nowrap;
+}
+thead th:first-child{
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+}
+thead th:last-child{
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+}
+
+/* ================= TABLE BODY ================= */
+tbody tr{
+    background: #ffffff;
+    transition: .25s ease;
+}
+tbody tr:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37,99,235,0.08);
+}
+tbody td{
+    padding: 18px;
+    background: white;
+    border-top: 1px solid #edf2f7;
+    border-bottom: 1px solid #edf2f7;
+    font-size: 14px;
+    color: #334155;
+    vertical-align: middle;
+}
+tbody td:first-child{
+    border-left: 1px solid #edf2f7;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+}
+tbody td:last-child{
+    border-right: 1px solid #edf2f7;
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width: 768px){
+    table{
+        min-width: 500px;
+    }
+}
+</style>
+
+<!-- TITLE -->
+<div class="title-box">
+    Jumlah Barang per Kategori
+</div>
+
+<!-- TABLE -->
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Kategori</th>
+                <th>Jumlah</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if kategori_counts %}
+                {% for row in kategori_counts %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ row.nama_kategori }}</td>
+                    <td>{{ row.jumlah }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center py-4 text-muted">Tidak ada kategori atau barang di lokasi Anda.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}  

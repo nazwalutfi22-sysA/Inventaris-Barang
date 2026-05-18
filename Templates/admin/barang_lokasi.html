@@ -11,11 +11,11 @@
 
         <div>
             <h3 class="mb-1 fw-bold">
-                Barang di Lokasi
+                Jumlah Barang per Kategori
             </h3>
 
             <p class="text-secondary mb-0">
-                {{ lokasi[1] }}
+                Lokasi: {{ lokasi.nama_lokasi }}
             </p>
         </div>
 
@@ -34,8 +34,7 @@
 
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nama Barang</th>
+                    <th>No</th>
                     <th>Kategori</th>
                     <th>Jumlah</th>
                 </tr>
@@ -43,22 +42,21 @@
 
             <tbody>
 
-                {% if barang %}
+                {% if kategori_counts %}
 
-                    {% for b in barang %}
+                    {% for row in kategori_counts %}
                     <tr>
-                        <td>{{ b[0] }}</td>
-                        <td>{{ b[1] }}</td>
-                        <td>{{ b[2] }}</td>
-                        <td>{{ b[3] }}</td>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ row.nama_kategori }}</td>
+                        <td>{{ row.jumlah }}</td>
                     </tr>
                     {% endfor %}
 
                 {% else %}
 
                     <tr>
-                        <td colspan="4" class="text-center py-4 text-secondary">
-                            Tidak ada barang di lokasi ini
+                        <td colspan="3" class="text-center py-4 text-secondary">
+                            Tidak ada kategori barang untuk lokasi ini.
                         </td>
                     </tr>
 

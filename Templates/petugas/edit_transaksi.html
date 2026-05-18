@@ -1,0 +1,203 @@
+{% extends 'petugas/base_petugas.html' %}
+
+{% block title %}Edit Transaksi{% endblock %}
+
+{% block content %}
+
+<style>
+/* ================= WRAPPER ================= */
+.wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 30px;
+}
+
+/* ================= CARD ================= */
+.card{
+    width: 100%;
+    max-width: 760px;
+    background: rgba(255,255,255,0.96);
+    border-radius: 26px;
+    padding: 34px;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 10px 30px rgba(37,99,235,0.06);
+}
+
+/* ================= TITLE ================= */
+.card h1{
+    font-size: 30px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+.subtitle{
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+/* ================= FORM ================= */
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ================= INPUT GROUP ================= */
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
+.form-group label{
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+}
+
+/* ================= INPUT ================= */
+.form-group input,
+.form-group select{
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid #dbe4f0;
+    background: #ffffff;
+    font-size: 14px;
+    color: #1e293b;
+    transition: .3s ease;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+.form-group input:focus,
+.form-group select:focus{
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59,130,246,0.10);
+}
+
+/* ================= INFO BOX ================= */
+.info-box{
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 10px;
+}
+.info-box p{
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+}
+.info-box strong{
+    color: #334155;
+}
+
+/* ================= BUTTON ================= */
+.actions{
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 12px;
+}
+.btn{
+    border: none;
+    padding: 12px 20px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* BATAL */
+.btn-secondary{
+    background: #eef2f7;
+    color: #475569;
+}
+.btn-secondary:hover{
+    background: #dfe7f1;
+    transform: translateY(-2px);
+}
+
+/* UPDATE */
+.btn-primary{
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    box-shadow: 0 8px 20px rgba(37,99,235,0.18);
+}
+.btn-primary:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(37,99,235,0.24);
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+    .card{
+        padding: 24px;
+    }
+    .actions{
+        flex-direction: column;
+    }
+    .btn{
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
+
+<div class="wrapper">
+    <div class="card">
+        <h1>Edit Transaksi</h1>
+        <p class="subtitle">Update data transaksi yang sudah ada</p>
+
+        <div class="info-box">
+            <p>ID Transaksi: <strong>#{{ transaksi.id_transaksi }}</strong> &nbsp;|&nbsp; 
+               Tanggal: <strong>{{ transaksi.tanggal.strftime('%d %B %Y') if transaksi.tanggal else '-' }}</strong></p>
+        </div>
+
+        <form method="POST" action="{{ url_for('update_transaksi', id=transaksi.id_transaksi) }}">
+
+            <div class="form-group">
+                <label>Barang</label>
+                <select name="id_barang" required>
+                    <option value="">Pilih Barang</option>
+                    {% for b in barang %}
+                    <option value="{{ b.id_barang }}" {% if b.id_barang == transaksi.id_barang %}selected{% endif %}>
+                        {{ b.nama_barang }} ({{ b.nomor_barang }})
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Jenis Transaksi</label>
+                <select name="tipe" required>
+                    <option value="">Pilih Transaksi</option>
+                    <option value="masuk" {% if transaksi.tipe == 'masuk' %}selected{% endif %}>Barang Masuk</option>
+                    <option value="keluar" {% if transaksi.tipe == 'keluar' %}selected{% endif %}>Barang Keluar</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Tanggal</label>
+                <input type="date" name="tanggal" value="{{ transaksi.tanggal.strftime('%Y-%m-%d') if transaksi.tanggal else '' }}" required />
+            </div>
+
+            <div class="actions">
+                <a href="{{ url_for('data_laporan_petugas') }}" class="btn btn-secondary">Batal</a>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
